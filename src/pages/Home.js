@@ -36,7 +36,7 @@ const BookSearchField = (props) => {
                 }}
                 value={keyword}
             />
-            <button onClick={() => search()}>Traži</button>
+            <button onClick={() => search()}>View</button>
         </div>
     );
 };
