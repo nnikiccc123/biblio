@@ -1,6 +1,6 @@
 import '../App.css';
 import searchBooks from "../utils/BookApi";
-import {useState, createRef} from "react";
+import { useState, createRef } from "react";
 
 const pageSize = 10;
 
@@ -9,7 +9,7 @@ const BookSearchField = (props) => {
     const textInputRef = createRef();
     const [keyword, setKeyword] = useState("")
 
-    function onChange(e){
+    function onChange(e) {
         e.preventDefault();
         setKeyword(e.target.value);
     }
@@ -51,7 +51,7 @@ const BookSearchPreview = (props) => {
             for (let item of props.searchResult.items) {
                 bookItems.push(
                     <div className={"book-preview-item"}>
-                        <img src={item?.volumeInfo?.imageLinks?.thumbnail} height={"150px"} title={item?.volumeInfo?.subtitle || item?.volumeInfo?.title} />
+                        <img onClick={() => alert("JOJ")} src={item?.volumeInfo?.imageLinks?.thumbnail} height={"150px"} title={item?.volumeInfo?.subtitle || item?.volumeInfo?.title} />
                         <span>
                             {item?.volumeInfo.title.substring(0, 20)}
                         </span>
@@ -100,10 +100,20 @@ const Home = () => {
 
     return (
         <div>
-            <h1>Naslovna strana</h1>
-            <BookSearchField searchFunc={() => search(0)} onChange={v => setSearchKeyword(v)} />
-            <BookSearchPreview searchResult={searchResult} searchFunc={search} />
+        <div className="paragraph-container">
+          <h1 className='home-title'>Welcome to the best online library</h1>
+          <p>Welcome to our digital oasis of knowledge and imagination.
+            Subscribe now to unlock a treasure trove of literary marvels, where every word is a gateway to new worlds and experiences.
+            Embrace the future of reading with our extensive collection, conveniently accessible from your electronic devices, and embark on a journey through the realms of literature unlike any other.</p>
+          <div className="search-container"> {/* Dodat div za search-container */}
+            <div className="search-bar">
+              <BookSearchField searchFunc={() => search(0)} onChange={v => setSearchKeyword(v)} />
+              
+            </div>
+          </div>
         </div>
+        <BookSearchPreview searchResult={searchResult} searchFunc={search} />
+      </div>
     );
 };
 

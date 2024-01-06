@@ -1,9 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 html, body {
-  padding: 0.5rem;
-  font-family: "Book Antiqua";
+  
+  background-image: url('images/background.jpg'); 
+  background-size: cover; 
   font-size: 13px;
   font-style: normal;
 }
+.paragraph-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: #ffffff; /* Updated to a slightly darker color */
+  text-align: center;
+  margin-bottom: 10px; /* Reduced margin-bottom for tighter spacing */
+  line-height: 1.5; /* Adjusted line-height for better readability */
+}
+
+
 
 .book-preview-grid {
   display: flex;
@@ -15,9 +34,88 @@ html, body {
   display: flex;
   flex-direction: column;
   margin: 1rem;
+  margin-bottom: 20px; 
 }
 
 .book-preview-pagination {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #efd4e1;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+}
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Centriraj horizontalno */
+}
+.search-bar {
+  display: flex;
+  align-items: center; /* Centriraj horizontalno */
+  margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 200px; /* Prilagodi širinu polja za pretragu */
+  box-sizing: border-box;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #76475b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.layout-title{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  font-size: 24px;
+  color: #6d1c67;
+}
+
+.home-title {
+  font-family: 'Poppins', sans-serif;
+  margin: 20px 0; 
+  font-size: 46px; 
+  color: #ffffff;
+  text-align: center; 
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+li {
+  margin: 0;
+}
+
+li a {
+  text-decoration: none;
+  color: #fffbfb;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+li a:hover {
+  color: #ff00a6;
 }
