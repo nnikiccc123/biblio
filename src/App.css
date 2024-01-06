@@ -1,0 +1,23 @@
+html, body {
+  padding: 0.5rem;
+  font-family: "Book Antiqua";
+  font-size: 13px;
+  font-style: normal;
+}
+
+.book-preview-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.book-preview-item {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.book-preview-pagination {
+  display: flex;
+  flex-direction: row;
+}
