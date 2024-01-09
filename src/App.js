@@ -5,8 +5,6 @@ import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
 import Layout from "./pages/Layout";
 import Login from './pages/Login';
-import BookDetails from './pages/BookDetails';
-import Search from "./pages/Search";
 
 
 
@@ -19,7 +17,6 @@ function App() {
                     <Route path="login" element={<Login/>}/>
                     <Route path="contact" element={<Contact/>}/>
                     <Route path="search" element={<Search/>}/>
-                    <Route path="books/:bookId" element={<BookDetails />} />
                     <Route path="*" element={<NoPage/>}/>
                 </Route>
             </Routes>
