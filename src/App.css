@@ -211,4 +211,9 @@ li a:hover {
 .submit-btn:hover {
   background-color: #7b2859;
 }
+.logout-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px; /* Adjust margin as needed */
+}
 
