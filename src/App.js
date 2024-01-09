@@ -5,6 +5,7 @@ import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
 import Layout from "./pages/Layout";
 import Login from './pages/Login';
+import Search from "./pages/Search";
 
 
 
