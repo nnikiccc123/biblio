@@ -33,6 +33,7 @@ const Search = () => {
             <div>
                 <BookSearchField searchFunc={() => search(0)} keyword={keyword} />
             </div>
+
             <div>
                 {
                     searchStatus === status_downloading &&
