@@ -18,6 +18,7 @@ function LoginForm() {
     if (storedUser) {
       setLoggedInUser(JSON.parse(storedUser));
     }
+
   }, []);
 
   const switchToLoginForm = () => {
@@ -55,7 +56,7 @@ function LoginForm() {
     setLoggedInUser(formData.email);
     localStorage.setItem('loggedInUser', JSON.stringify(formData.email));
     alert('Welcome to the world of books');
-    
+
   };
 
 
@@ -76,7 +77,7 @@ function LoginForm() {
       alert('No registered users');
     }
   };
-  
+
 
   const logoutUser = () => {
     localStorage.removeItem('loggedInUser');
