@@ -60,7 +60,7 @@ h1{
   width: 22vw;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0.3rem;
-  justify-content: center;
+
   align-content: center;
   align-items: center;
   color: white;
@@ -109,6 +109,28 @@ h1{
   cursor: pointer;
   padding: 0 0.5rem;
   font-size: 1.5rem;
+}
+
+.book-view-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  border: #6d1c67 0.5rem solid;
+  height: 60vh;
+  border-radius: 0.4rem;
+  background-color: #6d1c67;
+  color: white;
+}
+
+.book-view-container a {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#book-view-container {
+  width: 100%;
+  background-color: white;
+  flex-grow: 1;
 }
 
 nav {

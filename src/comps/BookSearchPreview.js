@@ -1,9 +1,39 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 const BookSearchPreview = (props) => {
+    const [viewBook, setViewBook] = useState(null);
+
     const openBook = (item) => {
-        alert(`Should open book ${item?.volumeInfo?.title}`)
+        setViewBook(item);
+    }
+
+    if (viewBook) {
+        let loadId = null;
+        if (viewBook.volumeInfo?.industryIdentifiers && viewBook.volumeInfo?.industryIdentifiers.length > 0) {
+            loadId = "ISBN:" + viewBook.volumeInfo?.industryIdentifiers[0]?.identifier;
+        }
+        if (loadId) {
+            setTimeout(() => {
+                let newViewer = new window.google.books.DefaultViewer(document.getElementById('book-view-container'));
+                newViewer.load(loadId);
+            }, 2000);
+            return (
+                <div className={"book-view-container"}>
+                    <div>
+                        <a onClick={() => {
+                            setViewBook(null);
+                            // document.getElementById('book-view-container').style.display = "none";
+                        }}>&larr; Back to search</a>
+                    </div>
+                    <div id={"book-view-container"} />
+                </div>
+            )
+        } else {
+            return (
+                <div>No view for this book!</div>
+            )
+        }
     }
 
     if (props.searchResult && props.searchResult.totalItems) {
