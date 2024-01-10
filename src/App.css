@@ -4,7 +4,7 @@ html, body {
   
   background-image: url('images/background.jpg'); 
   background-size: cover; 
-  font-size: 13px;
+  font-size: 15px;
   font-style: normal;
 }
 .paragraph-container {
@@ -46,11 +46,20 @@ h1{
 }
 
 .book-preview-pagination {
-  cursor: pointer;
   display: flex;
   flex-direction: row;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  color: white;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-preview-pagination a {
+  cursor: pointer;
+  padding: 0 0.5rem;
+  font-size: 2rem;
 }
 
 nav {

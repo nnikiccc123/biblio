@@ -26,22 +26,19 @@ const BookSearchPreview = (props) => {
 
         return (
             <div>
-                <div>
-                    Ukupno pronađeno knjiga: {props.searchResult.totalItems}
+                <div className={"book-preview-pagination"}>
+                    <a onClick={() => gotoPage(pageIndex - 1)}>&#x2190;</a>
+                    Showing {pageIndex * props.pageSize + 1} - {(pageIndex + 1) * props.pageSize} of {props.searchResult.totalItems}
+                    <a onClick={() => gotoPage(pageIndex + 1)}>&#x2192;</a>
                 </div>
                 <div className={"book-preview-grid"}>
                     {bookItems}
-                </div>
-                <div className={"book-preview-pagination"}>
-                    <button onClick={() => gotoPage(pageIndex - 1)}>Prethodno</button>
-                    &nbsp;Prikazano {pageIndex * props.pageSize + 1} - {(pageIndex + 1) * props.pageSize}&nbsp;
-                    <button onClick={() => gotoPage(pageIndex + 1)}>Sledeće</button>
                 </div>
             </div>
         )
     } else if (props.searchResult) {
         return (
-            <div>Nije pronađena ni jedna knjiga!</div>
+            <div>No books found!</div>
         )
     }
 
