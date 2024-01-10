@@ -2,6 +2,10 @@ import {useState} from "react";
 
 
 const BookSearchPreview = (props) => {
+    const openBook = (item) => {
+        alert(`Should open book ${item?.volumeInfo?.title}`)
+    }
+
     if (props.searchResult && props.searchResult.totalItems) {
         let bookItems = [];
         if (props.searchResult.items) {
@@ -17,10 +21,22 @@ const BookSearchPreview = (props) => {
                     }
                 }
 
+                let publisherAndPages = "";
+                if (item?.volumeInfo?.publisher) {
+                    publisherAndPages = item?.volumeInfo?.publisher;
+                }
+                let pages = item?.volumeInfo?.pageCount;
+                if (pages) {
+                    if (publisherAndPages) {
+                        publisherAndPages += ", ";
+                    }
+                    publisherAndPages += pages + " pages";
+                }
+
                 bookItems.push(
-                    <div className={"book-preview-item"}>
+                    <div className={"book-preview-item"} onClick={() => openBook(item)}>
                         <div>
-                            <img onClick={() => alert("JOJ")} src={thumbUrl} title={item?.volumeInfo?.subtitle || item?.volumeInfo?.title} />
+                            <img src={thumbUrl} title={item?.volumeInfo?.subtitle || item?.volumeInfo?.title} />
                         </div>
                         <span className={"title"}>
                             {item?.volumeInfo.title}
@@ -33,8 +49,7 @@ const BookSearchPreview = (props) => {
                             <span className={"authors"}>{authorsStr.length > 0 && `By ${authorsStr}`}</span>
                         }
                         {
-                            item?.volumeInfo?.pageCount ? <span className={"pagecount"}>{item?.volumeInfo?.pageCount} pages</span>: null
-
+                            publisherAndPages ? <span className={"pagecount"}>{publisherAndPages}</span>: null
                         }
                     </div>
                 )
@@ -45,10 +60,10 @@ const BookSearchPreview = (props) => {
             <div>
                 <div className={"book-preview-pagination"}>
                     {
-                        props.pageIndex > 0 && <a onClick={() => props.gotoPageFunc(props.pageIndex - 1)}>&#8678;</a>
+                        props.pageIndex > 0 && <a onClick={() => props.gotoPageFunc(props.pageIndex - 1)} title={"Previous page"}>&#129032;</a>
                     }
                     Showing books {props.pageIndex * props.pageSize + 1} - {(props.pageIndex + 1) * props.pageSize} of {props.searchResult.totalItems}
-                    <a onClick={() => props.gotoPageFunc(props.pageIndex + 1)}>&#8680;</a>
+                    <a onClick={() => props.gotoPageFunc(props.pageIndex + 1)} title={"Next page"}>&#129034;</a>
                 </div>
                 <div className={"book-preview-grid"}>
                     {bookItems}

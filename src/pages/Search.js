@@ -18,7 +18,26 @@ const Search = () => {
 
     const search = (startIndex) => {
         setSearchStatus(status_downloading);
-        searchBooks(window.sessionStorage.getItem("last_search_keyword"), pageSize, startIndex, json => {
+        const isAdvanced = window.sessionStorage.getItem("advanced_search") === "true";
+        let keyword = "";
+        if (isAdvanced) {
+            const searchTitle = window.sessionStorage.getItem("last_search_title");
+            const searchAuthor = window.sessionStorage.getItem("last_search_author");
+            const searchPublisher = window.sessionStorage.getItem("last_search_publisher");
+            if (searchTitle) {
+                keyword += `+intitle:${searchTitle}`;
+            }
+            if (searchAuthor) {
+                keyword += `+inauthor:${searchAuthor}`;
+            }
+            if (searchPublisher) {
+                keyword += `+inpublisher:${searchPublisher}`;
+            }
+        } else {
+            keyword = window.sessionStorage.getItem("last_search_keyword");
+        }
+
+        searchBooks(keyword, pageSize, startIndex, json => {
             if (json) {
                 setSearchStatus(status_ok);
                 setSearchResult(json);
@@ -38,7 +57,7 @@ const Search = () => {
         <div>
             <div className={"search-container"}>
                 <div className="search-bar">
-                    <BookSearchField searchFunc={() => gotoPage(0)} keyword={keyword} />
+                    <BookSearchField searchFunc={() => gotoPage(0)} keyword={keyword} showAdvanced={true} />
                 </div>
                 <div>
                     {
