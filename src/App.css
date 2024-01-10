@@ -297,3 +297,8 @@ li a:hover {
   margin-top: 10px; /* Adjust margin as needed */
 }
 
+.toggle-btn.login.active,
+.toggle-btn.register.active {
+  background-color: #7b2859;
+  color: #fff;
+}

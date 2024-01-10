@@ -12,6 +12,7 @@ function LoginForm() {
   });
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
+  const [isActive, setIsActive] = useState('login'); 
 
   useEffect(() => {
     const storedUser = localStorage.getItem('loggedInUser');
@@ -102,15 +103,21 @@ function LoginForm() {
 
               <button
                 type="button"
-                className="toggle-btn login"
-                onClick={switchToLoginForm}
+                className={`toggle-btn login ${isActive === 'login' ? 'active' : ''}`} 
+                onClick={() => {
+                  switchToLoginForm();
+                  setIsActive('login'); 
+                }}
               >
                 Log in
               </button>
               <button
                 type="button"
-                className="toggle-btn register"
-                onClick={switchToRegisterForm}
+                className={`toggle-btn register ${isActive === 'register' ? 'active' : ''}`} 
+                onClick={() => {
+                  switchToRegisterForm();
+                  setIsActive('register'); 
+                }}
               >
                 Register
               </button>
