@@ -32,28 +32,68 @@ h1{
 
 }
 
+.search-status-message {
+  color: white;
+  font-weight: bold;
+}
+
 .book-preview-grid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .book-preview-item {
   display: flex;
   flex-direction: column;
-  margin: 1rem;
-  margin-bottom: 20px; 
+  margin: 0.3rem;
+  padding: 0.5rem 0.2rem;
+  width: 22vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.3rem;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.book-preview-item img {
+  height: 20vh;
+}
+
+.book-preview-item .title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.book-preview-item .subtitle {
+  text-align: center;
+  font-family: cursive;
+  padding: 0.2rem 0;
+}
+
+.book-preview-item .pagecount {
+  text-align: center;
+  padding: 1rem 0 0 0;
+}
+
+.book-preview-item .authors {
+  text-align: center;
+  padding: 0.5rem 0;
+  font-weight: bold;
+  color: rgb(255, 255, 220);
 }
 
 .book-preview-pagination {
   display: flex;
   flex-direction: row;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   color: white;
   font-weight: bold;
   align-items: center;
   justify-content: center;
+  align-content: center;
 }
 
 .book-preview-pagination a {

@@ -2,34 +2,53 @@ import {useState} from "react";
 
 
 const BookSearchPreview = (props) => {
-    const [pageIndex, setPageIndex] = useState(0);
-
     if (props.searchResult && props.searchResult.totalItems) {
         let bookItems = [];
         if (props.searchResult.items) {
             for (let item of props.searchResult.items) {
+                let thumbUrl = item?.volumeInfo?.imageLinks?.thumbnail || "/img/nothumb.gif";
+                let authorsStr = "";
+                if (item?.volumeInfo?.authors && item?.volumeInfo?.authors.length > 0) {
+                    for (let author of item?.volumeInfo?.authors) {
+                        if (authorsStr.length > 0) {
+                            authorsStr += ", ";
+                        }
+                        authorsStr += author;
+                    }
+                }
+
                 bookItems.push(
                     <div className={"book-preview-item"}>
-                        <img onClick={() => alert("JOJ")} src={item?.volumeInfo?.imageLinks?.thumbnail} height={"150px"} title={item?.volumeInfo?.subtitle || item?.volumeInfo?.title} />
-                        <span>
-                            {item?.volumeInfo.title.substring(0, 20)}
+                        <div>
+                            <img onClick={() => alert("JOJ")} src={thumbUrl} title={item?.volumeInfo?.subtitle || item?.volumeInfo?.title} />
+                        </div>
+                        <span className={"title"}>
+                            {item?.volumeInfo.title}
                         </span>
+                        {
+                            item?.volumeInfo?.subtitle &&
+                            <span className={"subtitle"}>{item?.volumeInfo?.subtitle}</span>
+                        }
+                        {
+                            <span className={"authors"}>{authorsStr.length > 0 && `By ${authorsStr}`}</span>
+                        }
+                        {
+                            item?.volumeInfo?.pageCount ? <span className={"pagecount"}>{item?.volumeInfo?.pageCount} pages</span>: null
+
+                        }
                     </div>
                 )
             }
         }
 
-        let gotoPage = (idx) => {
-            setPageIndex(idx);
-            props.searchFunc(idx * props.pageSize);
-        }
-
         return (
             <div>
                 <div className={"book-preview-pagination"}>
-                    <a onClick={() => gotoPage(pageIndex - 1)}>&#x2190;</a>
-                    Showing {pageIndex * props.pageSize + 1} - {(pageIndex + 1) * props.pageSize} of {props.searchResult.totalItems}
-                    <a onClick={() => gotoPage(pageIndex + 1)}>&#x2192;</a>
+                    {
+                        props.pageIndex > 0 && <a onClick={() => props.gotoPageFunc(props.pageIndex - 1)}>&#8678;</a>
+                    }
+                    Showing books {props.pageIndex * props.pageSize + 1} - {(props.pageIndex + 1) * props.pageSize} of {props.searchResult.totalItems}
+                    <a onClick={() => props.gotoPageFunc(props.pageIndex + 1)}>&#8680;</a>
                 </div>
                 <div className={"book-preview-grid"}>
                     {bookItems}
@@ -38,7 +57,7 @@ const BookSearchPreview = (props) => {
         )
     } else if (props.searchResult) {
         return (
-            <div>No books found!</div>
+            <span className={"search-status-message"}>No books found!</span>
         )
     }
 
