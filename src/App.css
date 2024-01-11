@@ -137,6 +137,17 @@ h1{
   cursor: pointer;
 }
 
+.book-view-notloggedin {
+  margin: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.book-view-notloggedin a {
+  cursor: pointer;
+  color: aquamarine;
+}
+
 nav {
   display: flex;
   align-items: center;

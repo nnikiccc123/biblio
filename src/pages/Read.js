@@ -1,10 +1,13 @@
 import React, {useEffect} from "react";
 import {useNavigate, useNavigation} from "react-router-dom";
+import UserUtil from "../utils/UserUtil";
+import getUser from "../utils/UserUtil";
 
 const Read = (params) => {
     const loadId = new URLSearchParams(window.location.search).get("book");
 
-    const canRead = loadId && window.google?.books?.DefaultViewer;
+    let user = getUser();
+    const canRead = user && loadId && window.google?.books?.DefaultViewer;
 
     useEffect(() => {
         if (canRead) {
@@ -14,22 +17,37 @@ const Read = (params) => {
     }, []);
 
     let navigate = useNavigate();
-    return (
-        <div className={"book-view-container"} >
-            <div className={"book-view-header"}>
-                <a onClick={() => navigate("/search")}>Back to Search</a>
+
+    if (!user) {
+        return (
+            <div className={"book-view-notloggedin"}>
+                You are not logged in! <a onClick={() => navigate("/login")}>Login</a> to read the book.
             </div>
-            {
-                canRead && <div id={"book-view-container"} style={{height: "100%"}}/>
-            }
-            {
-                !canRead &&
-                <div style={{height: "100%", display: "flex", border: "red 3px solid", justifyContent: "center", alignItems: "center"}}>
-                    Cannot read this book!
+        )
+    } else {
+        return (
+            <div className={"book-view-container"}>
+                <div className={"book-view-header"}>
+                    <a onClick={() => navigate("/search")}>Back to Search</a>
                 </div>
-            }
-        </div>
-    );
+                {
+                    canRead && <div id={"book-view-container"} style={{height: "100%"}}/>
+                }
+                {
+                    !canRead &&
+                    <div style={{
+                        height: "100%",
+                        display: "flex",
+                        border: "red 3px solid",
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }}>
+                        Cannot read this book!
+                    </div>
+                }
+            </div>
+        );
+    }
 };
 
 export default Read;
