@@ -6,6 +6,7 @@ import NoPage from "./pages/NoPage";
 import Layout from "./pages/Layout";
 import Login from './pages/Login';
 import Search from "./pages/Search";
+import Read from "./pages/Read";
 
 
 
@@ -18,6 +19,7 @@ function App() {
                     <Route path="login" element={<Login/>}/>
                     <Route path="contact" element={<Contact/>}/>
                     <Route path="search" element={<Search/>}/>
+                    <Route path="read" element={<Read/>}/>
                     <Route path="*" element={<NoPage/>}/>
                 </Route>
             </Routes>

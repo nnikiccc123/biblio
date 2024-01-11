@@ -114,23 +114,27 @@ h1{
 .book-view-container {
   display: flex;
   flex-direction: column;
-  width: 80vw;
-  border: #6d1c67 0.5rem solid;
-  height: 60vh;
-  border-radius: 0.4rem;
-  background-color: #6d1c67;
+  width: 100%;
+  height: 78vh;
+  background-color: white;
+  color: black;
+  margin-top: 0.5rem;
+}
+
+.book-view-header {
+  background-color: rgba(109, 28, 123, 0.8);
+  padding: 0.4rem 0.5rem;
   color: white;
+}
+
+.book-view-header a {
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .book-view-container a {
   font-weight: bold;
   cursor: pointer;
-}
-
-#book-view-container {
-  width: 100%;
-  background-color: white;
-  flex-grow: 1;
 }
 
 nav {
