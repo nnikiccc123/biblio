@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import BookSearchField from "../comps/BookSearchField";
 import searchBooks from "../utils/BookApi";
 import BookSearchPreview from "../comps/BookSearchPreview";
@@ -14,7 +14,7 @@ const status_error = 2;
 const Search = () => {
     const [searchStatus, setSearchStatus] = useState(status_ok);
     const [searchResult, setSearchResult] = useState();
-    const [searchPageIndex, setSearchPageIndex] = useState(0);
+    const [searchPageIndex, setSearchPageIndex] = useState(window.sessionStorage.getItem("search_page_index") || 0);
 
     const search = (startIndex) => {
         setSearchStatus(status_downloading);
@@ -50,9 +50,17 @@ const Search = () => {
     let gotoPage = (idx) => {
         setSearchPageIndex(idx);
         search(idx * pageSize);
+        window.sessionStorage.setItem("search_page_index", idx);
     }
 
     let keyword = window.sessionStorage.getItem("last_search_keyword");
+
+    useEffect(() => {
+        if (keyword) {
+            gotoPage(searchPageIndex);
+        }
+    }, []);
+
     return (
         <div>
             <div className={"search-container"}>

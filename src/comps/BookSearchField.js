@@ -29,12 +29,6 @@ const BookSearchField = (props) => {
         }
     }
 
-    useEffect(() => {
-        if (keyword) {
-            search();
-        }
-    }, []);
-
     const onKeyDown = e => {
         if (e.key === "Enter") {
             search();
