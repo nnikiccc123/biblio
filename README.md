@@ -1,0 +1,1 @@
+Ovo je moj prvi projekat u kojem sam koristila React i JavaScript. Tema projekta je bila online biblioteka, a u njemu sam prvi put implementirala API za preuzimanje podataka o knjigama i upravljanje bibliotekom.
